@@ -30,3 +30,18 @@ Scenario: Email address not provided
 When I have not enter email address
 	And I try to proceed with registration
 Then I should see an invalid email error, Invalid email address
+
+Scenario: New user registration
+	When I enter following new user details
+
+	  | Field			| Value					|
+	  | UserName        | j.Bloggs			   |
+	  | EmailAddress           | j.Bloggs@qaworks.com |
+	  | Password        | Password123          |
+	  | ConfirmPassword | Password123          |
+
+	When I try to proceed with registration
+	Then I should see following username
+
+	| Field			| Value					|
+	 | UserName        | j.Bloggs			   |

@@ -6,9 +6,18 @@ using NUnit.Framework;
 
 namespace DemoExampleSite.specs
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using TechTalk.SpecFlow.Assist;
+
+    using Table = TechTalk.SpecFlow.Table;
+
     [Binding]
     public class NewUserRegistrationSteps
     {
+        private dynamic _instance;
+
         [When]
         public void When_I_enter_a_password_of_PASSWORD(string password)
         {
@@ -105,6 +114,27 @@ namespace DemoExampleSite.specs
             var isMessageDisplayed = p.ValidationErrorListText.Contains(message);
             Assert.IsTrue(isMessageDisplayed);
         }
+
+        [When(@"I enter following new user details")]
+        public void WhenIEnterFollowingNewUserDetails(Table table)
+        {
+            var p = WebBrowser.Current.Page<RegistrationPage>();
+            _instance = table.CreateDynamicInstance();
+            p.UserName = _instance.UserName;
+            p.EmailAddress = _instance.EmailAddress;
+            p.Password = _instance.Password;
+            p.ConfirmPassword = _instance.ConfirmPassword;
+        }
+
+        [Then(@"I should see following username")]
+        public void ThenIShouldSeeFollowingUsername(Table table)
+        {
+            var user = Document.TextField(Find.ById("NewUserName")).Text;
+            var p = WebBrowser.Current.Page<RegistrationPage>();
+            _instance = table.CreateDynamicInstance();
+            Assert.AreEqual(_instance.UserName, p.UserName);
+        }
+
 
     }
 }

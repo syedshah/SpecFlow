@@ -134,6 +134,48 @@ testRunner.Then("I should see an invalid email error, Invalid email address", ((
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("New user registration")]
+        public virtual void NewUserRegistration()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New user registration", ((string[])(null)));
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 8
+this.FeatureBackground();
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table1.AddRow(new string[] {
+                        "UserName",
+                        "j.Bloggs"});
+            table1.AddRow(new string[] {
+                        "EmailAddress",
+                        "j.Bloggs@qaworks.com"});
+            table1.AddRow(new string[] {
+                        "Password",
+                        "Password123"});
+            table1.AddRow(new string[] {
+                        "ConfirmPassword",
+                        "Password123"});
+#line 35
+ testRunner.When("I enter following new user details", ((string)(null)), table1, "When ");
+#line 43
+ testRunner.When("I try to proceed with registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table2.AddRow(new string[] {
+                        "UserName",
+                        "j.Bloggs"});
+#line 44
+ testRunner.Then("I should see following username", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
